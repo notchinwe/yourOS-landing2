@@ -1360,6 +1360,8 @@
             ✓ You're on the list. You'll receive instructions when your access activates.
           </div>
           <p class="cta-note">No credit card. No obligations. Just enforcement — when it's ready for you.</p>
+          <form id="beehiivForm" action="https://yours-newsletter-93c0fd.beehiiv.com/subscribe" method="POST" target="beehiiv_frame" style="display:none;"><input type="email" name="email" id="beehiivEmail" /><input type="hidden" name="utm_source" value="landing_page" /></form>
+          <iframe name="beehiiv_frame" style="display:none;" title="subscribe"></iframe>
         </div>
 
       </div>
@@ -1474,9 +1476,9 @@
         setTimeout(() => input.style.outline = '', 1500);
         return;
       }
-      // Redirect to Beehiiv with email pre-filled
-      const encoded = encodeURIComponent(val);
-      window.open('https://yours-newsletter-93c0fd.beehiiv.com/subscribe?email=' + encoded, '_blank');
+      // Submit silently to Beehiiv in background iframe
+      document.getElementById('beehiivEmail').value = val;
+      document.getElementById('beehiivForm').submit();
       document.getElementById('waitlistForm').style.display = 'none';
       document.getElementById('waitlistSuccess').style.display = 'block';
     }
